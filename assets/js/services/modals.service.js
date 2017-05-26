@@ -116,13 +116,7 @@ function modals ($rootScope, $state, $uibModal, $ocLazyLoad, Options) {
     resolve: {
       exchange () { return exchange; },
       quote () { return quote; },
-      options: () => Options.get(),
-      accounts: ($q) => {
-        return $q.resolve([]);
-        // return exchange.profile
-        //   ? exchange.getBuyMethods().then(methods => methods.ach.getAccounts())
-        //   : $q.resolve([]);
-      }
+      options: () => Options.get()
     }
   }).result.then(() => {
     $state.go('wallet.common.buy-sell.sfox', { selectedTab: 'ORDER_HISTORY' });

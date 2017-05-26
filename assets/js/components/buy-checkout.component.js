@@ -11,6 +11,7 @@ angular
       buyAccount: '<',
       conversion: '<',
       collapseSummary: '<',
+      handleBuy: '&',
       handleQuote: '&',
       buySuccess: '&',
       buyError: '&'
@@ -20,7 +21,7 @@ angular
     controllerAs: '$ctrl'
   });
 
-function BuyCheckoutController (Env, AngularHelper, $scope, $timeout, $q, currency, Wallet, MyWalletHelpers, modals, sfox, $uibModal, formatTrade) {
+function BuyCheckoutController (Env, AngularHelper, $scope, $timeout, $q, currency, Wallet, MyWalletHelpers, modals, $uibModal, formatTrade) {
   $scope.format = currency.formatCurrencyForView;
   $scope.toSatoshi = currency.convertToSatoshi;
   $scope.fromSatoshi = currency.convertFromSatoshi;
@@ -120,7 +121,7 @@ function BuyCheckoutController (Env, AngularHelper, $scope, $timeout, $q, curren
     $scope.lock();
     let quote = $scope.quote;
     if (this.buyAccount) {
-      sfox.buy(this.buyAccount, quote)
+      this.handleBuy(this.buyAccount, quote)
         .then(trade => {
           this.buySuccess({trade});
         })

@@ -355,6 +355,10 @@ function AppRouter ($stateProvider, $urlRouterProvider) {
           //   ? Options.get().then(() => exchange.getBuyMethods()).then(methods => methods.ach.getAccounts())
           //   : $q.resolve([]);
         },
+        exchangeRate ($q, MyWallet, unocoin) {
+          let exchange = MyWallet.wallet.external.unocoin;
+          return $q.resolve(unocoin.fetchQuote(exchange, 1, 'BTC', 'INR'));
+        },
         options (Options) { return Options.get(); },
         showCheckout (options, MyWallet) {
           let email = MyWallet.wallet.accountInfo.email;

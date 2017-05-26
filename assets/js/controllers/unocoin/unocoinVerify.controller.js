@@ -80,7 +80,6 @@ function UnocoinVerifyController (AngularHelper, Env, $scope, $q, state, $http, 
   };
 
   AngularHelper.installLock.call($scope);
-  $scope.$on('$destroy', () => { exchange.profile && exchange.profile.setSSN(null); });
   $scope.$watch('state.step', (val) => console.log(val));
 
   // QA Tool

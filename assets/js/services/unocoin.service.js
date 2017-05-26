@@ -70,7 +70,10 @@ function unocoin ($q, Alerts, modals, Options, Env) {
 
   function buy (account, quote) {
     return $q.resolve(quote.getPaymentMediums())
-      .then(mediums => mediums.ach.buy(account));
+      .then(mediums => {
+        debugger;
+        mediums.bank.buy();
+      });
   }
 
   function watchTrades (trades) {
